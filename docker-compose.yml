@@ -1,0 +1,17 @@
+postgres:
+  image: postgres
+  environment:
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgres
+  ports:
+    - "5432:5432"
+my_microservice:
+  build: .
+  links:
+    - postgres
+  environment:
+    - PGHOST=localhost
+    - PGDATABASE=microservicedb
+    - database=microservicedb
+    - POSTGRES_USER=postgres
+
